@@ -10,7 +10,9 @@ service ClarifyStatus {
   rpc GetHostStatus (HostStatusRequest) returns (HostStatusReply) {}
 }
 
-message HostStatusRequest {}
+message HostStatusRequest {
+  string jobName = 1;
+}
 
 message HostStatusReply {
    message Host {
