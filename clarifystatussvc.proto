@@ -20,7 +20,7 @@ message ServiceLocationRequest {
 message ServiceLocationReply {
   message ServiceLocation {
     string serviceHost = 1;
-    int32 servicePort = 2;
+    int64 servicePort = 2;
   }
   repeated ServiceLocation locations = 1;
 }
