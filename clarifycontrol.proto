@@ -35,7 +35,7 @@ message ServiceLocationReply {
   repeated ServiceLocation locations = 1;
 }
 
-enum NodeStatus {
+enum ClarifyStatus {
   UNKNOWN = 0;
   JOB_STOPPED = 1;
   NODE_DRAINED = 2;
@@ -47,7 +47,7 @@ enum NodeStatus {
 message NodeStatusReply {
   message NodeDetails {
     Node node = 1;
-    NodeStatus status = 2;
+    ClarifyStatus status = 2;
     bool coordinatorLeader = 3;
     bool receiverLeader = 4;
   }
@@ -57,10 +57,10 @@ message NodeStatusReply {
 
 message DrainReply {
   Node node = 1;
-  NodeStatus status = 2;
+  ClarifyStatus status = 2;
 }
 
 message StopReply {
   Job job = 1;
-  NodeStatus status = 2;
+  ClarifyStatus status = 2;
 }
