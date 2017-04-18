@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.cleo.clarify.control.pb";
+option java_outer_classname = "ClarifyControlProto";
+
+package pb;
+
+service ClarifyControl {
+  rpc NodeStatus (Job) returns (NodeStatusReply) {}
+  rpc ServiceLocation (Service) returns (ServiceLocationReply) {}
+  rpc Drain (Node) returns (DrainReply) {}
+  rpc Stop (Job) returns (StopReply) {}
+}
+
+message Node {
+  string hostname = 1;
+}
+
+message Service {
+  string serviceName = 1;
+  string serviceTag = 2;
+  bool healthy = 3;
+}
+
+message Job {
+  string jobName = 1;
+}
+
+message ServiceLocationReply {
+  message ServiceLocation {
+    string serviceHost = 1;
+    int64 servicePort = 2;
+  }
+  repeated ServiceLocation locations = 1;
+}
+
+enum NodeStatus {
+  UNKNOWN = 0;
+  JOB_STOPPED = 1;
+  NODE_DRAINED = 2;
+  NODE_ALLOC_MIXED = 3;
+  NODE_ALLOC_STARTED = 4;
+  NODE_UNALLOCATED = 5;
+}
+
+message NodeStatusReply {
+  message NodeDetails {
+    Node node = 1;
+    NodeStatus status = 2;
+    bool coordinatorLeader = 3;
+    bool receiverLeader = 4;
+  }
+  repeated NodeDetails details = 1;
+  string error = 2;
+}
+
+message DrainReply {
+  Node node = 1;
+  NodeStatus status = 2;
+}
+
+message StopReply {
+  Job job = 1;
+  NodeStatus status = 2;
+}
