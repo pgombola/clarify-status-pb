@@ -30,7 +30,7 @@ message Job {
 
 message ServiceLocationReply {
   message ServiceLocation {
-    string serviceName = 1
+    string serviceName = 1;
     string serviceHost = 2;
     int64 servicePort = 3;
   }
