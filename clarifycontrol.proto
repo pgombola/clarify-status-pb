@@ -11,6 +11,7 @@ service ClarifyControl {
   rpc ServiceLocation (Service) returns (ServiceLocationReply) {}
   rpc Drain (Node) returns (DrainReply) {}
   rpc Stop (Job) returns (StopReply) {}
+  rpc Leader (Service) return (ServiceLocation) {}
 }
 
 message Node {
@@ -27,11 +28,12 @@ message Job {
   string jobName = 1;
 }
 
+message ServiceLocation {
+  string serviceHost = 1;
+  int64 servicePort = 2;
+}
+
 message ServiceLocationReply {
-  message ServiceLocation {
-    string serviceHost = 1;
-    int64 servicePort = 2;
-  }
   repeated ServiceLocation locations = 1;
 }
 
