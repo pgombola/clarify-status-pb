@@ -28,12 +28,12 @@ message Job {
   string jobName = 1;
 }
 
-message ServiceLocation {
-  string serviceHost = 1;
-  int64 servicePort = 2;
-}
-
 message ServiceLocationReply {
+  message ServiceLocation {
+    string serviceName = 1
+    string serviceHost = 2;
+    int64 servicePort = 3;
+  }
   repeated ServiceLocation locations = 1;
 }
 
