@@ -11,7 +11,7 @@ service ClarifyControl {
   rpc ServiceLocation (Service) returns (ServiceLocationReply) {}
   rpc Drain (Node) returns (DrainReply) {}
   rpc Stop (Job) returns (StopReply) {}
-  rpc Leader (Service) returns (ServiceLocation) {}
+  rpc Leader (Service) returns (ServiceLocationReply) {}
 }
 
 message Node {
