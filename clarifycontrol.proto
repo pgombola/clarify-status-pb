@@ -9,7 +9,7 @@ package pb;
 service ClarifyControl {
   rpc NodeStatus (Job) returns (NodeStatusReply) {}
   rpc ServiceLocation (Service) returns (ServiceLocationReply) {}
-  rpc Drain (Node) returns (DrainReply) {}
+  rpc Drain (DrainRequest) returns (DrainReply) {}
   rpc Stop (Job) returns (StopReply) {}
   rpc Leader (Service) returns (ServiceLocationReply) {}
 }
@@ -55,6 +55,11 @@ message NodeStatusReply {
   }
   repeated NodeDetails details = 1;
   string error = 2;
+}
+
+message DrainRequest {
+  Node node = 1;
+  bool enabled = 2;
 }
 
 message DrainReply {
