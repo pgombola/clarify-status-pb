@@ -50,8 +50,8 @@ message NodeStatusReply {
   message NodeDetails {
     Node node = 1;
     ClarifyStatus status = 2;
-    bool coordinatorLeader = 3;
-    bool receiverLeader = 4;
+    bool isActive = 3;
+    repeated string services = 4;
   }
   repeated NodeDetails details = 1;
   string error = 2;
